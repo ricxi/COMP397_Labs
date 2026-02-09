@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using KBCore.Refs;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerInput : MonoBehaviour
@@ -13,7 +14,12 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private float rotationSpeed = 4.0f;
     [SerializeField] private float mouseSensY = 5.0f;
     [SerializeField] private Camera cam;
-    [SerializeField] private CharacterController controller;
+    [SerializeField, Self] private CharacterController controller;
+
+    private void OnValidate()
+    {
+        this.ValidateRefs();
+    }
 
     void Start()
     {
